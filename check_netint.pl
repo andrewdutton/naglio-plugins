@@ -2020,8 +2020,7 @@ sub getdata_snmp {
 	 $interfaces[$i]{'oper_up'} = $results->{$oper_table.$tindex[$i]} if exists($results->{$oper_table.$tindex[$i]});
 
 	 # IN and OUT traffic counters, Errors and Dropped counters
-	 if (defined($results->{$oid_perf_inoct[$i]}) && defined($results->{$oid_perf_outoct[$i]})) {
-	     $interfaces[$i]{'in_bytes'}=$results->{$oid_perf_inoct[$i]};
+	 if ((defined($o_perf) || defined($o_checkperf)) && (defined($results->{$oid_perf_inoct[$i]}) && defined($results->{$oid_perf_outoct[$i]}))) {	     $interfaces[$i]{'in_bytes'}=$results->{$oid_perf_inoct[$i]};
 	     $interfaces[$i]{'out_bytes'}=$results->{$oid_perf_outoct[$i]};
 	     $interfaces[$i]{'in_errors'}=0;
 	     $interfaces[$i]{'out_errors'}=0;
